@@ -3,555 +3,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Product Store</title>
+    <title>Premium Hair Oil - Product Page</title>
     <style>
+        /* --- CSS STYLES --- */
         :root {
-            --primary-color: #1e40af;
-            --secondary-color: #1e40af;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f3f4f6;
-            --white: #ffffff;
-            --success-color: #10b981;
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --text-color: #333;
+            --light-gray: #f4f4f4;
+            --border-color: #ddd;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            color: var(--text-color);
             line-height: 1.6;
+            background-color: #fff;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
+        /* Header */
         header {
-            background: var(--white);
-            padding: 20px 0;
+            background: white;
+            padding: 15px 5%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: var(--primary-color);
-            text-align: center;
         }
 
-        .product-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-        }
-
-        .gallery {
+        /* Main Product Section */
+        .product-container {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            gap: 40px;
         }
+
+        /* Left Side: Image Gallery */
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
         .main-image {
             width: 100%;
-            height: 400px;
+            height: 450px;
             object-fit: cover;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            cursor: pointer;
             border-radius: 8px;
-            border: 1px solid #e5e7eb;
         }
-        .thumbnails {
+
+        .thumbnail-container {
             display: flex;
             gap: 10px;
+            overflow-x: auto;
         }
-        .thumb {
+
+        .thumbnail {
             width: 80px;
             height: 80px;
             object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
             border: 2px solid transparent;
-            transition: 0.3s;
+            cursor: pointer;
+            opacity: 0.7;
+            border-radius: 4px;
+            transition: 0.2s;
         }
-        .thumb:hover, .thumb.active {
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
             border-color: var(--primary-color);
         }
 
-        .product-info h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 24px;
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .description {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            text-align: justify;
+        /* Right Side: Product Details */
+        .product-details {
+            flex: 1;
+            min-width: 300px;
         }
 
-        .btn-group {
+        .product-title {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .rating {
+            color: #f1c40f;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .verified-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .price-box {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .current-price {
+            color: var(--primary-color);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .discount {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-left: 10px;
+            background: #ffebee;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .weight-info {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .description {
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Buttons */
+        .action-buttons {
             display: flex;
             gap: 15px;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
+
         .btn {
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-weight: 600;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            text-decoration: none;
+            font-weight: 600;
             transition: 0.3s;
+            flex: 1;
             text-align: center;
         }
+
         .btn-cart {
-            background-color: var(--white);
+            background-color: white;
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
         }
+
         .btn-cart:hover {
-            background-color: #eff6ff;
+            background-color: var(--light-gray);
         }
+
         .btn-order {
-            background-color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            color: var(--white);
-        }
-        .btn-order:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .reviews-section {
-            margin-bottom: 50px;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .review-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .stars {
-            color: #fbbf24;
-            margin-bottom: 10px;
-        }
-        .reviewer-name {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-            color: var(--text-dark);
-        }
-
-        .order-form-section {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 700px;
-            margin: 0 auto 80px auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-top: 5px solid var(--primary-color);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-dark);
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: 0.3s;
-            background-color: #f9fafb;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background-color: var(--white);
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background-color: var(--success-color);
+            background-color: var(--accent-color);
             color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .submit-btn:hover {
-            background-color: #059669;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
-        /* --- ORDER SUMMARY STYLES --- */
-        .order-summary {
-            background-color: #f8fafc;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border: 1px solid #e2e8f0;
+        .btn-order:hover {
+            background-color: #219150;
         }
-        .order-summary h4 {
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            border-bottom: 1px solid #cbd5e1;
+
+        /* Reviews Section */
+        .reviews-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
             padding-bottom: 10px;
         }
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-        .summary-item span:last-child {
-            font-weight: 600;
-            color: var(--primary-color);
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        /* --- MODAL / POPUP STYLES --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
+        .review-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .review-stars {
+            color: #f1c40f;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* Modal (Order Form) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.5); 
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(4px);
+            padding: 20px;
+            overflow-y: auto; /* Scroll if modal is too tall */
         }
 
-        .modal-container {
+        .modal-content {
             background-color: white;
-            padding: 40px;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            animation: popIn 0.3s ease-out;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            animation: slideDown 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        @keyframes slideDown {
+            from {transform: translateY(-50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* --- FIXED SUCCESS POPUP CSS --- */
+        .success-popup {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            /* Flexbox to center perfectly */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .success-popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            /* Responsive width: max 90% of screen, min 300px */
+            max-width: 90%; 
+            width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            /* Prevent text overflow */
+            word-wrap: break-word;
         }
 
         .success-icon {
-            width: 80px;
-            height: 80px;
-            background-color: #d1fae5;
-            color: var(--success-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px auto;
-            font-size: 40px;
+            color: var(--accent-color);
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
-        .modal-container h3 {
-            font-size: 24px;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-
-        .modal-container p {
-            color: var(--text-light);
-            margin-bottom: 25px;
-            font-size: 16px;
-        }
-
-        .btn-close-modal {
-            background-color: var(--primary-color);
+        /* Footer */
+        footer {
+            background: var(--primary-color);
             color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .btn-close-modal:hover {
-            background-color: var(--secondary-color);
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
         }
 
+        /* Responsive Design for Mobile */
         @media (max-width: 768px) {
-            .product-section {
-                grid-template-columns: 1fr;
-                padding: 20px;
+            .product-container {
+                flex-direction: column;
+                gap: 20px;
             }
+            
+            .product-gallery {
+                max-width: 100%;
+            }
+
             .main-image {
                 height: 300px;
             }
-            .btn-group {
+
+            .product-title {
+                font-size: 22px;
+            }
+
+            .action-buttons {
                 flex-direction: column;
             }
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
+
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="logo">ZENVIX</div>
-        </div>
+        <div class="logo">ZENVIX</div>
+        <nav>
+            <a href="#" style="text-decoration: none; color: #333; margin-left: 15px;">Home</a>
+        </nav>
     </header>
 
-    <div class="container">
-
-        <section class="product-section">
-            <div class="gallery">
-                <img src="jaw1.jpg" alt="Product Main" class="main-image" id="mainImage">
-                <div class="thumbnails">
-                    <img src="jaw1.jpg" class="thumb active" onclick="changeImage(this)">
-                    <img src="jaw2.jpg" class="thumb" onclick="changeImage(this)">
-                    <img src="jaw3.jpg" class="thumb" onclick="changeImage(this)">
-                </div>
-            </div>
-
-            <div class="product-info">
-                <h1>Jawline Exerciser</h1>
-                <div class="price">₹207</div>
-                <p class="description">
-                    Tone and define your jawline effortlessly with this compact jawline exerciser. Strengthen facial muscles, reduce sagging, and achieve a more sculpted look anytime, anywhere.
-                </p>
-                <div class="btn-group">
-                    <a href="#order-form" class="btn btn-cart">Add to Cart</a>
-                    <a href="#order-form" class="btn btn-order">Order Now</a>
-                </div>
-                <p style="font-size: 14px; color: #666;">
-                    <span style="color: green;">✓</span> In Stock <br>
-                    <span style="color: green;">✓</span> Free Shipping <br>
-                    <span style="color: green;">✓</span> Non Toxic
-                </p>
-            </div>
-        </section>
-
-        <section class="reviews-section">
-            <h2 class="section-title">Customer Reviews</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Yaar, sach mein kaam kar raha hai! Sirf 2 hafton mein mere jawline thodi zyada defined lagne lagi hai. Roz 10 min hi karte hain, easy aur effective tool hai</p>
-                    <span class="reviewer-name">- Rahul Sharma</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Shuru mein thoda doubt tha ki ye kaam karega ya nahi, par honestly, difference dikh raha hai. Chehre ka contour better lag raha hai, aur jawline tight feel hoti hai</p>
-                    <span class="reviewer-name">- Priya Singh</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★☆</div>
-                    <p>Mujhe initially laga thoda awkward lagega use karna, par surprisingly comfortable hai. Roz 5-10 min aur results noticeable hain. Definitely recommend karunga</p>
-                    <span class="reviewer-name">- Amit Verma</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Gift ke liye liya tha aur ab main bhi use kar rahi hoon. Jawline ka shape improve ho raha hai aur face thoda toned lagne laga hai. Easy aur convenient hai daily use ke liye</p>
-                    <span class="reviewer-name">- Sneha Gupta</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Seriously, best investment for facial fitness! Ghar baithe, sirf few minutes aur face ka look improve ho raha hai. Aur bonus: confidence bhi badh gaya hai</p>
-                    <span class="reviewer-name">- Vikram Malhotra</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="order-form" class="order-form-section">
-            <h2 class="section-title" style="font-size: 24px; margin-bottom: 20px;">Complete Your Order </h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px;">After Order We Contact You</p>
+    <!-- Product Section -->
+    <div class="product-container">
+        
+        <!-- Left: Gallery -->
+        <div class="product-gallery">
+            <!-- Main Image -->
+            <img id="mainImage" src="jaw1.jpg" alt="Product Image" class="main-image">
             
-            <form id="web3OrderForm" onsubmit="handleOrderSubmit(event)">
-                <input type="hidden" name="access_key" value="bef10bca-a8f0-4c9a-989f-09989edd44a8">
-                <input type="hidden" name="subject" value="New Order - Zenvix Jawline Exerciser">
-                <input type="hidden" name="product_name" value="Jawline Exerciser">
-                <input type="hidden" name="price" value="207">
-                <input type="hidden" name="quantity" value="1">
-
-                <div class="order-summary">
-                    <h4>Order Summary</h4>
-                    <div class="summary-item"><span>Product</span><span>Jawline Exerciser</span></div>
-                    <div class="summary-item"><span>Price</span><span>₹207</span></div>
-                    <div class="summary-item"><span>Quantity</span><span>1</span></div>
-                    <div class="summary-item" style="margin-top: 10px; border-top: 1px solid #cbd5e1; padding-top: 10px;">
-                        <span>Total Amount</span><span>₹207</span>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" name="customer_name" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" name="phone" placeholder="Enter your phone" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>City *</label>
-                        <input type="text" name="city" placeholder="Enter your city" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Pincode *</label>
-                        <input type="text" name="pincode" placeholder="Enter pincode" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Full Address *</label>
-                    <textarea name="address" rows="3" placeholder="Enter your complete delivery address" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Order Notes (Optional)</label>
-                    <textarea name="notes" rows="2" placeholder="Any special instructions for your order"></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Place Order</button>
-            </form>
-        </section>
-
-    </div> <!-- End Container -->
-
-    <!-- Order Success Modal -->
-    <div class="modal-overlay" id="orderSuccessModal">
-        <div class="modal-container">
-            <div class="success-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+            <!-- Thumbnails -->
+            <div class="thumbnail-container">
+                <img src="jaw1.jpg" class="thumbnail active" onclick="changeImage(this)">
+                <img src="jaw2.jpg" class="thumbnail" onclick="changeImage(this)">
+                <img src="jaw3.jpg" class="thumbnail" onclick="changeImage(this)">
             </div>
-            <h3>Order Placed Successfully!</h3>
-            <p>Thank you for your order. We will contact you shortly to confirm your order and delivery details.</p>
-            <button class="btn-close-modal" onclick="closeSuccessModal()">Continue Shopping</button>
+        </div>
+
+        <!-- Right: Details -->
+        <div class="product-details">
+            <span class="verified-badge">✓ Verified Seller</span>
+            <h1 class="product-title">Jawline Exerciser</h1>
+            
+            <div class="rating">
+                ★★★★☆ <span style="color: #666; font-size: 14px;">(4.8/5 based on 120 reviews)</span>
+            </div>
+
+            <div class="price-box">
+                <span class="current-price">₹199.00</span>
+                <span class="original-price">₹239.00</span>
+                <span class="discount">17% OFF</span>
+            </div>
+
+            <div class="weight-info">
+                <strong>Weight:</strong> 15gm | <strong>Shelf Life:</strong> Non Toxix
+            </div>
+
+            <div class="description">
+                <p>Tone and define your jawline effortlessly with this compact jawline exerciser. Strengthen facial muscles, reduce sagging, and achieve a more sculpted look anytime, anywhere..</p>
+                <br>
+                <ul>
+                    <li>✓ 100% Organic Ingredients</li>
+                    <li>✓ Non Toxix-Free</li>
+                    <li>✓ Best For Jaw</li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-cart" onclick="alert('Added to Cart!')">Add to Cart</button>
+                <button class="btn btn-order" onclick="openOrderForm()">Order Now</button>
+            </div>
         </div>
     </div>
 
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <h2 class="section-title">Customer Reviews (7)</h2>
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="reviewer-name">Rahul Sharma</div>
+                <div class="review-stars">★★★★★</div>
+                <p>Main 3 weeks se use kar raha hoon aur honestly face thoda tight feel ho raha hai. Double chin bhi thodi kam lag rahi hai. Daily sirf 10–15 min use karta hoon. Worth it 👍</p>
+            </div>
+           
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="reviewer-name">Amit Verma</div>
+                <div class="review-stars">★★★★★</div>
+                <p>Starting mein thoda ajeeb laga use karna, par 1 week baad habit ho gayi. Jaw muscles strong feel ho rahi hain. Result dheere dheere milta hai but kaam karta hai</p>
+            </div>
+            <!-- Review 4 -->
+            <div class="review-card">
+                <div class="reviewer-name">Sneha Gupta</div>
+                <div class="review-stars">★★★★★</div>
+                <p>Gym nahi ja pata tha face ke liye kuch karna tha, yeh product helpful laga. Face ka shape thoda sharp dikhta hai ab selfies mein 😄 Quality bhi achhi hai</p>
+            </div>
+            <!-- Review 5 -->
+            <div class="review-card">
+                <div class="reviewer-name">Rajesh Kumar</div>
+                <div class="review-stars">★★★★☆</div>
+                <p>Material soft hai aur smell bhi weird nahi hai jaise kuch log bolte hain. Roz use karne se face mein tightness feel hoti hai. Patience rakho result milta hai</p>
+            </div>
+            <!-- Review 6 -->
+            <div class="review-card">
+                <div class="reviewer-name">Anjali Desai</div>
+                <div class="review-stars">★★★★★</div>
+                <p>Maine 40 din use kiya aur friends ne notice bhi kiya ki face slim lag raha hai. Sabse achha part hai ki kahin bhi use kar sakte ho – TV dekhte time bhi</p>
+            </div>
+            <!-- Review 7 -->
+            <div class="review-card">
+                <div class="reviewer-name">Vikram Singh</div>
+                <div class="review-stars">★★★★☆</div>
+                <p>Daily routine ka part bana liya hai. 15 min morning + 10 min night. Face contour thoda improve hua hai aur confidence bhi. Price ke hisaab se sahi product hai</p>
+            </div>
+            <!-- Review 8 -->
+            <div class="review-card">
+                <div class="reviewer-name">Meera Iyer</div>
+                <div class="review-stars">★★★★★</div>
+                <p>Sach bolu to maine socha tha bas normal sa rubber hoga, but use karne ke baad difference feel hua. 2–3 weeks mein jawline thodi defined lagne lagi. Sabse achhi baat – easy to use aur pocket friendly hai. Paisa vasool product 👌</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Form Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeOrderForm()">&times;</span>
+            <h2>Complete Your Order</h2>
+            
+            <!-- Order Summary Section (Consistent with Form Fields) -->
+            <div class="summary-section">
+                <!-- Product Name -->
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label style="color: #666; font-size: 13px;">Product Name</label>
+                    <div style="font-weight: 600; color: #333; padding: 8px; background: #f9f9f9; border-radius: 4px; border: 1px solid #eee;">
+                        Rosemary & Lavender Healthy Hair Oil
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label style="color: #666; font-size: 13px;">Price per Unit</label>
+                    <div style="font-weight: 600; color: #333; padding: 8px; background: #f9f9f9; border-radius: 4px; border: 1px solid #eee;">
+                        ₹499.00
+                    </div>
+                </div>
+
+                <!-- Quantity -->
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" class="qty-input" onchange="updateTotal()">
+                </div>
+
+                <!-- Total Amount -->
+                <div class="total-row">
+                    <span class="total-label">Total Amount:</span>
+                    <span id="totalPrice" class="total-price">₹499.00</span>
+                </div>
+            </div>
+            
+            <!-- Web3Forms Integration -->
+            <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="bef10bca-a8f0-4c9a-989f-09989edd44a8">
+                <input type="hidden" name="subject" value="New Order: Rosemary Hair Oil">
+                <input type="hidden" name="redirect" value="https://yourwebsite.com/thanks">
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" required placeholder="Enter your name">
+                </div>
+       
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required placeholder="Enter your mobile number">
+                </div>
+                <div class="form-group">
+                    <label>Your Address</label>
+                    <textarea name="address" rows="3" required placeholder="Enter full address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Order Note (Optional)</label>
+                    <textarea name="message" rows="2" placeholder="Any special instructions"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-order">Place Order</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Success Popup -->
+    <div id="successPopup" class="success-popup">
+        <div class="success-popup-content">
+            <div class="success-icon">✓</div>
+            <h2>Order Placed Successfully!</h2>
+            <p style="margin-bottom: 20px; color: #666;">Thank you for your order. We will contact you shortly.</p>
+            <button class="btn btn-order" onclick="closeSuccessPopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ZENVIX. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 5px;">Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
     <script>
-        // Image Gallery Function
-        function changeImage(element) {
-            var mainImage = document.getElementById("mainImage");
-            mainImage.src = element.src;
+        // 1. Modal Logic
+        const orderModal = document.getElementById('orderModal');
+        const successPopup = document.getElementById('successPopup');
 
-            var thumbs = document.querySelectorAll(".thumb");
-            thumbs.forEach(function(thumb) {
-                thumb.classList.remove("active");
-            });
-
-            element.classList.add("active");
+        function openOrderForm() {
+            orderModal.style.display = 'flex';
         }
 
-        // Order Form Handling with Web3Forms
-        function handleOrderSubmit(event) {
-            event.preventDefault();
+        function closeOrderForm() {
+            orderModal.style.display = 'none';
+        }
+
+        function closeSuccessPopup() {
+            successPopup.style.display = 'none';
+            orderModal.style.display = 'none';
+        }
+
+        // Close modal if clicked outside content
+        window.onclick = function(event) {
+            if (event.target == orderModal) {
+                closeOrderForm();
+            }
+        }
+
+        // 2. Update Total Price Logic
+        function updateTotal() {
+            const price = 499;
+            const quantity = document.getElementById('quantity').value;
+            const total = price * quantity;
+            document.getElementById('totalPrice').innerText = '₹' + total.toFixed(2);
+        }
+
+        // 3. Form Submission Logic (Web3Forms)
+        const form = document.getElementById('orderForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
             
-            var form = document.getElementById("web3OrderForm");
-            var formData = new FormData(form);
-            
-            // Show loading state
-            var submitBtn = form.querySelector(".submit-btn");
-            var originalText = submitBtn.innerText;
-            submitBtn.innerText = "Processing...";
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Processing...';
             submitBtn.disabled = true;
-            
-            // Submit to Web3Forms using Fetch API
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
+
+            const formData = new FormData(form);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Show success modal
-                    var modal = document.getElementById("orderSuccessModal");
-                    modal.style.display = "flex";
-                    
-                    // Reset form
+                    successPopup.style.display = 'flex';
                     form.reset();
-                    
-                    // Reset button
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
+                    document.getElementById('totalPrice').innerText = '₹499.00';
                 } else {
-                    alert("Something went wrong! Please try again.");
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
+                    alert('Something went wrong. Please try again.');
                 }
             })
             .catch(error => {
-                console.error("Error:", error);
-                alert("Something went wrong! Please try again.");
+                console.error('Error:', error);
+                alert('Network error. Please try again.');
+            })
+            .finally(() => {
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
             });
-        }
-
-        // Close Modal Function
-        function closeSuccessModal() {
-            var modal = document.getElementById("orderSuccessModal");
-            modal.style.display = "none";
-        }
-
-        // Close modal if clicked outside
-        window.onclick = function(event) {
-            var modal = document.getElementById("orderSuccessModal");
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        });
     </script>
-
 </body>
 </html>
