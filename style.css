@@ -1,0 +1,381 @@
+/* ============================================
+   PREMIUM PRODUCT PAGE CSS STYLING (CONTINUED)
+   ============================================ */
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .product-section {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        gap: 40px;
+    }
+
+    .main-image {
+        height: 350px;
+    }
+
+    .product-info h1 {
+        font-size: 28px;
+    }
+
+    .price {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .product-section {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .main-image {
+        height: 300px;
+    }
+
+    .thumbnails {
+        gap: 8px;
+    }
+
+    .thumb {
+        width: 60px;
+        height: 60px;
+    }
+
+    .product-info h1 {
+        font-size: 24px;
+    }
+
+    .price {
+        font-size: 22px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .order-form-section {
+        padding: 30px 20px;
+        margin: 30px auto;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 22px;
+    }
+
+    .product-section {
+        padding: 15px;
+    }
+
+    .main-image {
+        height: 250px;
+    }
+
+    .product-info h1 {
+        font-size: 20px;
+    }
+
+    .price {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .order-form-section {
+        padding: 20px 15px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+        padding: 14px;
+    }
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Apply Animations --- */
+.product-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.review-card {
+    animation: slideIn 0.5s ease-out;
+}
+
+.review-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.review-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.review-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.review-card:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+/* --- Hover Effects --- */
+.btn:hover {
+    animation: pulse 0.3s ease-in-out;
+}
+
+.main-image:hover {
+    animation: pulse 0.3s ease-in-out;
+}
+
+/* --- Loading State --- */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* --- Form Validation Styles --- */
+.form-group input:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--danger-color);
+}
+
+.form-group input:valid:not(:placeholder-shown),
+.form-group textarea:valid:not(:placeholder-shown) {
+    border-color: var(--success-color);
+}
+
+/* --- Success/Error Messages --- */
+.form-message {
+    padding: 12px;
+    border-radius: var(--radius-md);
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+}
+
+.form-message.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.form-message.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+/* --- Print Styles --- */
+@media print {
+    header,
+    .btn-group,
+    .order-form-section {
+        display: none;
+    }
+
+    .product-section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* --- Focus Styles for Accessibility --- */
+.btn:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* --- Dark Mode Support (Optional) --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #111827;
+        --bg-secondary: #1f2937;
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --text-light: #9ca3af;
+    }
+
+    .product-section,
+    .order-form-section,
+    .review-card {
+        background: var(--bg-secondary);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+}
+
+/* --- Additional Premium Effects --- */
+
+/* Gradient Text for Price */
+.price-gradient {
+    background: var(--bg-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glow Effect on Buttons */
+.btn-glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+}
+
+/* Card Hover Lift Effect */
+.hover-lift {
+    transition: var(--transition-normal);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+}
+
+/* Image Zoom on Click */
+.main-image:active {
+    transform: scale(0.98);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Badge Styles --- */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.badge-new {
+    background: var(--primary-color);
+    color: white;
+}
+
+.badge-sale {
+    background: var(--danger-color);
+    color: white;
+}
+
+.badge-best {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* --- Stock Indicator --- */
+.stock-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.stock-indicator::before {
+    content: '🟢';
+    font-size: 16px;
+}
+
+/* --- Shipping Info --- */
+.shipping-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.shipping-info::before {
+    content: '🚚';
+}
+
+/* --- Final Complete HTML Structure --- */
