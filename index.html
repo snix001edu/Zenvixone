@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Product Store</title>
+    <title>Rosemary & Lavender Hair Growth Oil | Soulflower Clone</title>
     <style>
+        /* --- RESET & VARIABLES --- */
         :root {
-            --primary-color: #1e40af;
-            --secondary-color: #1e40af;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f3f4f6;
+            --primary-green: #4A7C59;
+            --secondary-green: #8FB996;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
             --white: #ffffff;
-            --success-color: #10b981;
+            --accent-gold: #D4AF37;
         }
 
         * {
@@ -23,535 +24,950 @@
         }
 
         body {
-            background-color: var(--bg-light);
+            background-color: var(--white);
             color: var(--text-dark);
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
+        /* --- HEADER --- */
         header {
-            background: var(--white);
-            padding: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-align: center;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .product-section {
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        .cart-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* --- PRODUCT CONTAINER --- */
+        .product-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
+            gap: 50px;
         }
 
-        .gallery {
+        /* --- LEFT COLUMN: IMAGES --- */
+        .product-gallery {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .main-image {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
+            height: 500px;
+            background-color: var(--bg-light);
             border-radius: 8px;
-            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
-        .thumbnails {
+
+        .main-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .thumbnail-list {
             display: flex;
             gap: 10px;
         }
-        .thumb {
+
+        .thumbnail {
             width: 80px;
             height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
+            background-color: var(--bg-light);
+            border-radius: 4px;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: 0.3s;
-        }
-        .thumb:hover, .thumb.active {
-            border-color: var(--primary-color);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .product-info h1 {
-            font-size: 32px;
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-green);
+        }
+
+        /* --- RIGHT COLUMN: DETAILS --- */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .breadcrumbs {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 2.2rem;
+            color: var(--text-dark);
             margin-bottom: 10px;
         }
-        .price {
-            font-size: 24px;
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .description {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            text-align: justify;
+
+        .rating {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
         }
 
-        .btn-group {
+        .price-box {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .mrp {
+            text-decoration: line-through;
+            color: var(--text-light);
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+
+        .discount-badge {
+            background-color: #e8f5e9;
+            color: var(--primary-green);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .description-short {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        /* --- ACTION BUTTONS --- */
+        .actions {
             display: flex;
             gap: 15px;
             margin-bottom: 30px;
         }
+
         .btn {
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-weight: 600;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
             transition: 0.3s;
-            text-align: center;
-        }
-        .btn-cart {
-            background-color: var(--white);
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        .btn-cart:hover {
-            background-color: #eff6ff;
-        }
-        .btn-order {
-            background-color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            color: var(--white);
-        }
-        .btn-order:hover {
-            background-color: var(--secondary-color);
         }
 
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--white);
+            flex: 2;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a6346;
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f7f2;
+        }
+
+        /* --- INFO TABS --- */
+        .info-section {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .info-tabs {
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-green);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--primary-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .ingredients-box {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .ingredients-box h4 {
+            margin-bottom: 10px;
+            color: var(--primary-green);
+        }
+
+        /* --- CUSTOMER REVIEWS SECTION --- */
         .reviews-section {
-            margin-bottom: 50px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
         }
-        .section-title {
+
+        .reviews-header {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
+            margin-bottom: 40px;
         }
+
+        .reviews-header h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
+
         .review-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .stars {
-            color: #fbbf24;
-            margin-bottom: 10px;
-        }
-        .reviewer-name {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-            color: var(--text-dark);
-        }
-
-        .order-form-section {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 700px;
-            margin: 0 auto 80px auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-top: 5px solid var(--primary-color);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-dark);
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: 0.3s;
-            background-color: #f9fafb;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
             background-color: var(--white);
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background-color: var(--success-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .submit-btn:hover {
-            background-color: #059669;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        /* --- ORDER SUMMARY STYLES --- */
-        .order-summary {
-            background-color: #f8fafc;
-            padding: 20px;
+            border: 1px solid #eee;
             border-radius: 8px;
-            margin-bottom: 25px;
-            border: 1px solid #e2e8f0;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .order-summary h4 {
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            border-bottom: 1px solid #cbd5e1;
-            padding-bottom: 10px;
-        }
-        .summary-item {
+
+        .reviewer-info {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-        .summary-item span:last-child {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        /* --- MODAL / POPUP STYLES --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            justify-content: center;
             align-items: center;
-            backdrop-filter: blur(4px);
+            margin-bottom: 15px;
         }
 
-        .modal-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            animation: popIn 0.3s ease-out;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background-color: #d1fae5;
-            color: var(--success-color);
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-green);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px auto;
-            font-size: 40px;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
         }
 
-        .modal-container h3 {
-            font-size: 24px;
+        .reviewer-name {
+            font-weight: bold;
             color: var(--text-dark);
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .review-stars {
+            color: var(--accent-gold);
             margin-bottom: 10px;
         }
 
-        .modal-container p {
+        .review-text {
             color: var(--text-light);
-            margin-bottom: 25px;
-            font-size: 16px;
+            font-size: 0.95rem;
         }
 
-        .btn-close-modal {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: 600;
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 40px 5%;
+            margin-top: 60px;
+            text-align: center;
         }
-        .btn-close-modal:hover {
-            background-color: var(--secondary-color);
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .product-section {
+            .product-container {
                 grid-template-columns: 1fr;
-                padding: 20px;
+                gap: 30px;
             }
+            
             .main-image {
-                height: 300px;
+                height: 350px;
             }
-            .btn-group {
+
+            .actions {
                 flex-direction: column;
             }
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
+
+            .btn {
+                width: 100%;
             }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #3a6346;
+        }
+
+        /* --- SUCCESS POPUP STYLES --- */
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 3000;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .success-popup h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .success-popup p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .success-popup button {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* --- UPLOAD BUTTON STYLES --- */
+        .upload-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f7f2;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .upload-btn {
+            background-color: var(--secondary-green);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        #fileInput {
+            display: none;
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="logo">ZENVIX</div>
-        </div>
+        <div class="logo">Soulflower</div>
+        <nav class="nav-links">
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="cart-icon">🛒 Cart (0)</div>
     </header>
 
-    <div class="container">
-
-        <section class="product-section">
-            <div class="gallery">
-                <img src="jaw1.jpg" alt="Product Main" class="main-image" id="mainImage">
-                <div class="thumbnails">
-                    <img src="jaw1.jpg" class="thumb active" onclick="changeImage(this)">
-                    <img src="jaw2.jpg" class="thumb" onclick="changeImage(this)">
-                    <img src="jaw3.jpg" class="thumb" onclick="changeImage(this)">
-                </div>
+    <!-- Main Product Section -->
+    <main class="product-container">
+        
+        <!-- Left: Images -->
+        <div class="product-gallery">
+            <div class="main-image">
+                <img id="mainImg" src="jaw1.jpg" alt="Rosemary Lavender Hair Growth Oil">
             </div>
-
-            <div class="product-info">
-                <h1>Jawline Exerciser</h1>
-                <div class="price">₹207</div>
-                <p class="description">
-                    Tone and define your jawline effortlessly with this compact jawline exerciser. Strengthen facial muscles, reduce sagging, and achieve a more sculpted look anytime, anywhere.
-                </p>
-                <div class="btn-group">
-                    <a href="#order-form" class="btn btn-cart">Add to Cart</a>
-                    <a href="#order-form" class="btn btn-order">Order Now</a>
-                </div>
-                <p style="font-size: 14px; color: #666;">
-                    <span style="color: green;">✓</span> In Stock <br>
-                    <span style="color: green;">✓</span> Free Shipping <br>
-                    <span style="color: green;">✓</span> Non Toxic
-                </p>
+            <div class="thumbnail-list">
+                <!-- Thumbnails with actual images -->
+                <div class="thumbnail active" onclick="changeImage(this, 'https://via.placeholder.com/400x500/8FB996/ffffff?text=Rosemary+Lavender+Oil')">
+                <img src="jaw1.jpg">
             </div>
-        </section>
-
-        <section class="reviews-section">
-            <h2 class="section-title">Customer Reviews</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Yaar, sach mein kaam kar raha hai! Sirf 2 hafton mein mere jawline thodi zyada defined lagne lagi hai. Roz 10 min hi karte hain, easy aur effective tool hai</p>
-                    <span class="reviewer-name">- Rahul Sharma</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Shuru mein thoda doubt tha ki ye kaam karega ya nahi, par honestly, difference dikh raha hai. Chehre ka contour better lag raha hai, aur jawline tight feel hoti hai</p>
-                    <span class="reviewer-name">- Priya Singh</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★☆</div>
-                    <p>Mujhe initially laga thoda awkward lagega use karna, par surprisingly comfortable hai. Roz 5-10 min aur results noticeable hain. Definitely recommend karunga</p>
-                    <span class="reviewer-name">- Amit Verma</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Gift ke liye liya tha aur ab main bhi use kar rahi hoon. Jawline ka shape improve ho raha hai aur face thoda toned lagne laga hai. Easy aur convenient hai daily use ke liye</p>
-                    <span class="reviewer-name">- Sneha Gupta</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>Seriously, best investment for facial fitness! Ghar baithe, sirf few minutes aur face ka look improve ho raha hai. Aur bonus: confidence bhi badh gaya hai</p>
-                    <span class="reviewer-name">- Vikram Malhotra</span>
-                </div>
+            <div class="thumbnail" onclick="changeImage(this, 'https://via.placeholder.com/400x500/4A7C59/ffffff?text=Product+Detail+1')">
+                <img src="jaw2.jpg">
             </div>
-        </section>
-
-        <section id="order-form" class="order-form-section">
-            <h2 class="section-title" style="font-size: 24px; margin-bottom: 20px;">Complete Your Order </h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px;">After Order We Contact You</p>
+            <div class="thumbnail" onclick="changeImage(this, 'https://via.placeholder.com/400x500/D4AF37/ffffff?text=Product+Detail+2')">
+                <img src="jaw3.jpg">
+            </div>
             
-            <form id="web3OrderForm" onsubmit="handleOrderSubmit(event)">
-                <input type="hidden" name="access_key" value="bef10bca-a8f0-4c9a-989f-09989edd44a8">
-                <input type="hidden" name="subject" value="New Order - Zenvix Jawline Exerciser">
-                <input type="hidden" name="product_name" value="Jawline Exerciser">
-                <input type="hidden" name="price" value="207">
-                <input type="hidden" name="quantity" value="1">
-
-                <div class="order-summary">
-                    <h4>Order Summary</h4>
-                    <div class="summary-item"><span>Product</span><span>Jawline Exerciser</span></div>
-                    <div class="summary-item"><span>Price</span><span>₹207</span></div>
-                    <div class="summary-item"><span>Quantity</span><span>1</span></div>
-                    <div class="summary-item" style="margin-top: 10px; border-top: 1px solid #cbd5e1; padding-top: 10px;">
-                        <span>Total Amount</span><span>₹207</span>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" name="customer_name" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" name="phone" placeholder="Enter your phone" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>City *</label>
-                        <input type="text" name="city" placeholder="Enter your city" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Pincode *</label>
-                        <input type="text" name="pincode" placeholder="Enter pincode" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Full Address *</label>
-                    <textarea name="address" rows="3" placeholder="Enter your complete delivery address" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Order Notes (Optional)</label>
-                    <textarea name="notes" rows="2" placeholder="Any special instructions for your order"></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Place Order</button>
-            </form>
-        </section>
-
-    </div> <!-- End Container -->
-
-    <!-- Order Success Modal -->
-    <div class="modal-overlay" id="orderSuccessModal">
-        <div class="modal-container">
-            <div class="success-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+           
+         
             </div>
-            <h3>Order Placed Successfully!</h3>
-            <p>Thank you for your order. We will contact you shortly to confirm your order and delivery details.</p>
-            <button class="btn-close-modal" onclick="closeSuccessModal()">Continue Shopping</button>
+        </div>
+ <!-- Right: Details -->
+        <div class="product-details">
+            <div class="breadcrumbs">Home / Hair Care / Oils / Rosemary & Lavender</div>
+            
+            <h1 class="product-title">Rosemary & Lavender Hair Growth Oil</h1>
+            
+            <div class="rating">
+                ★★★★★ <span style="color: #666; margin-left: 5px;">(4.8/5 based on 120 reviews)</span>
+            </div>
+
+            <div class="price-box">
+                <span class="current-price">₹399.00</span>
+                <span class="mrp">₹599.00</span>
+                <span class="discount-badge">33% OFF</span>
+            </div>
+
+            <p class="description-short">
+                A potent blend of Rosemary and Lavender essential oils infused with Castor and Almond oil. 
+                Specifically formulated to combat hair fall, promote hair growth, and soothe a dry, itchy scalp.
+            </p>
+
+            <div class="actions">
+                <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                <button class="btn btn-secondary" onclick="openOrderForm()">Buy Now</button>
+            </div>
+
+            <!-- Details Tabs -->
+            <div class="info-section">
+                <div class="info-tabs">
+                    <button class="tab-btn active" onclick="openTab('desc')">Description</button>
+                    <button class="tab-btn" onclick="openTab('benefits')">Benefits</button>
+                    <button class="tab-btn" onclick="openTab('ingredients')">Ingredients</button>
+                    <button class="tab-btn" onclick="openTab('usage')">How to Use</button>
+                </div>
+
+                <!-- Tab Content: Description -->
+                <div id="desc" class="tab-content active">
+                    <p>Our Rosemary & Lavender Hair Growth Oil is a natural remedy for those struggling with hair fall and dry scalp. Rosemary is known to stimulate hair follicles and improve circulation to the scalp, while Lavender calms inflammation and promotes relaxation. Combined with nourishing base oils, this creates a perfect environment for healthy, lustrous hair.</p>
+                    <br>
+                    <p><strong>Key Highlights:</strong></p>
+                    <ul class="feature-list">
+                        <li>100% Natural & Organic Ingredients</li>
+                        <li>Paraben & Sulfate Free</li>
+                        <li>Cruelty-Free</li>
+                        <li>Rich in Antioxidants</li>
+                    </ul>
+                </div>
+
+                <!-- Tab Content: Benefits -->
+                <div id="benefits" class="tab-content">
+                    <h3>Why you will love it:</h3>
+                    <br>
+                    <ul class="feature-list">
+                        <li><strong>Promotes Hair Growth:</strong> Rosemary oil stimulates blood circulation to hair follicles.</li>
+                        <li><strong>Reduces Hair Fall:</strong> Strengthens hair roots to minimize breakage.</li>
+                        <li><strong>Scalp Health:</strong> Lavender soothes dryness, dandruff, and itchiness.</li>
+                        <li><strong>Shiny & Soft:</strong> Almond oil adds natural shine and softness to the hair texture.</li>
+                    </ul>
+                </div>
+
+                <!-- Tab Content: Ingredients -->
+                <div id="ingredients" class="tab-content">
+                    <h3>Ingredients List:</h3>
+                    <div class="ingredients-box">
+                        <p><strong>Base Oils:</strong> Castor Oil, Almond Oil, Sunflower Oil, Sesame Oil.</p>
+                        <br>
+                        <p><strong>Essential Oils:</strong> Rosemary Oil, Lavender Oil.</p>
+                        <br>
+                        <p><strong>Active Compounds:</strong> Rosmarinic Acid, Linalool, Camphor.</p>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Usage -->
+                <div id="usage" class="tab-content">
+                    <h3>How to Use:</h3>
+                    <br>
+                    <ol style="margin-left: 20px; color: var(--text-light);">
+                        <li>Take 2-3 drops of the oil in your palm.</li>
+                        <li>Apply directly to the scalp and massage gently for 5-10 minutes.</li>
+                        <li>Leave it on for at least 1 hour (or overnight for deep conditioning).</li>
+                        <li>Wash off with a mild shampoo.</li>
+                        <li>Use 2-3 times a week for best results.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section">
+        <div class="reviews-header">
+            <h2>Customer Reviews</h2>
+            <p>See what our customers are saying about this product</p>
+        </div>
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">A</div>
+                    <div>
+                        <div class="reviewer-name">Anjali Sharma</div>
+                        <div class="review-date">2 days ago</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Amazing product! My hair fall has reduced significantly in just 3 weeks. Highly recommended."</p>
+            </div>
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">R</div>
+                    <div>
+                        <div class="reviewer-name">Rahul Verma</div>
+                        <div class="review-date">1 week ago</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★☆</div>
+                <p class="review-text">"Good quality oil. Smells great. Delivery was fast. Will buy again."</p>
+            </div>
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">P</div>
+                    <div>
+                        <div class="reviewer-name">Priya Singh</div>
+                        <div class="review-date">2 weeks ago</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Best hair oil I have used. My hair feels so soft and shiny now."</p>
+            </div>
+            <!-- Review 4 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">S</div>
+                    <div>
+                        <div class="reviewer-name">Sneha Gupta</div>
+                        <div class="review-date">3 weeks ago</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Excellent for dandruff control. The lavender scent is very relaxing."</p>
+            </div>
+            <!-- Review 5 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">K</div>
+                    <div>
+                        <div class="reviewer-name">Karan Mehta</div>
+                        <div class="review-date">1 month ago</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★☆</div>
+                <p class="review-text">"Good value for money. Packaging was secure."</p>
+            </div>
+            <!-- Review 6 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">M</div>
+                    <div>
+                        <div class="reviewer-name">Meera Joshi</div>
+                        <div class="review-date">1 month ago</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"My hair growth has improved a lot. Thank you for this product!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms & Conditions</a> | 
+            <a href="#">Shipping Policy</a>
+        </div>
+        <p>&copy; 2024 Soulflower Clone. All rights reserved.</p>
+    </footer>
+
+    <!-- ORDER FORM MODAL -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOrderForm()">&times;</span>
+            <h2 style="color: var(--primary-green); margin-bottom: 20px;">Complete Your Order</h2>
+            
+            <!-- Web3Forms Form -->
+            <form id="web3form">
+                <!-- IMPORTANT: Replace 'bef10bca-a8f0-4c9a-989f-09989edd44a8' with your actual Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="bef10bca-a8f0-4c9a-989f-09989edd44a8">
+                <input type="hidden" name="subject" value="New Order: Rosemary & Lavender Oil">
+                
+                <!-- Product Details (Hidden) -->
+                <input type="hidden" name="product_name" value="Rosemary & Lavender Hair Growth Oil">
+                <input type="hidden" name="product_price" value="₹399.00">
+                
+                <div class="form-group">
+                    <label>Costomer Name</label>
+                    <input type="text" name="name" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required placeholder="Enter your mobile number">
+                </div>
+                
+                <div class="form-group">
+                    <label>Pincode</label>
+                    <input type="tel" name="pincode" required placeholder="Enter your Pincode">
+                </div>
+                
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <select name="quantity" id="quantity" required>
+                        <option value="1">1 Bottle</option>
+                        <option value="2">2 Bottles</option>
+                        <option value="3">3 Bottles</option>
+                        <option value="4">4 Bottles</option>
+                        <option value="5">5 Bottles</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Total Price</label>
+                    <input type="text" id="totalPrice" name="total_price" readonly placeholder="₹0.00">
+                </div>
+
+                <div class="form-group">
+                    <label>Full Address</label>
+                    <textarea name="address" rows="3" required placeholder="Enter full address"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Place Order</button>
+            </form>
         </div>
     </div>
 
+    <!-- SUCCESS POPUP -->
+    <div id="successPopup" class="success-popup">
+        <h3>Order Placed Successfully!</h3>
+        <p>Thank you for your purchase. We will contact you shortly.</p>
+        <button onclick="closeSuccessPopup()">Close</button>
+    </div>
+
+    <!-- JavaScript Logic -->
     <script>
-        // Image Gallery Function
-        function changeImage(element) {
-            var mainImage = document.getElementById("mainImage");
-            mainImage.src = element.src;
-
-            var thumbs = document.querySelectorAll(".thumb");
-            thumbs.forEach(function(thumb) {
-                thumb.classList.remove("active");
-            });
-
-            element.classList.add("active");
+        // --- Modal Logic ---
+        function openOrderForm() {
+            document.getElementById('orderModal').style.display = 'block';
+            calculateTotal();
         }
 
-        // Order Form Handling with Web3Forms
-        function handleOrderSubmit(event) {
-            event.preventDefault();
-            
-            var form = document.getElementById("web3OrderForm");
-            var formData = new FormData(form);
-            
-            // Show loading state
-            var submitBtn = form.querySelector(".submit-btn");
-            var originalText = submitBtn.innerText;
-            submitBtn.innerText = "Processing...";
-            submitBtn.disabled = true;
-            
-            // Submit to Web3Forms using Fetch API
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Show success modal
-                    var modal = document.getElementById("orderSuccessModal");
-                    modal.style.display = "flex";
-                    
-                    // Reset form
-                    form.reset();
-                    
-                    // Reset button
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
-                } else {
-                    alert("Something went wrong! Please try again.");
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("Something went wrong! Please try again.");
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-            });
+        function closeOrderForm() {
+            document.getElementById('orderModal').style.display = 'none';
         }
 
-        // Close Modal Function
-        function closeSuccessModal() {
-            var modal = document.getElementById("orderSuccessModal");
-            modal.style.display = "none";
-        }
-
-        // Close modal if clicked outside
+        // Close modal if user clicks outside of it
         window.onclick = function(event) {
-            var modal = document.getElementById("orderSuccessModal");
+            var modal = document.getElementById('orderModal');
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-    </script>
 
+        // --- Success Popup Logic ---
+        function showSuccessPopup() {
+            document.getElementById('successPopup').style.display = 'block';
+            closeOrderForm();
+        }
+
+        function closeSuccessPopup() {
+            document.getElementById('successPopup').style.display = 'none';
+        }
+
+        // --- Calculate Total Price ---
+        function calculateTotal() {
+            const price = 399;
+            const quantity = document.getElementById('quantity').value;
+            const total = price * quantity;
+            document.getElementById('totalPrice').value = '₹' + total + '.00';
+        }
+
+        // Update total when quantity changes
+        document.getElementById('quantity').addEventListener('change', calculateTotal);
+
+        // --- Form Submission (Web3Forms AJAX) ---
+        document.getElementById('web3form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Processing...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            })
+            .then(async (response) => {
+                if (response.status === 200) {
+                    const data = await response.json();
+                    if (data.success) {
+                        showSuccessPopup();
+                        this.reset(); // Clear form
+                        document.getElementById('totalPrice').value = '';
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                } else {
+                    console.log(response);
+                    alert("Something went wrong!");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Network error. Please try again.");
+            })
+            .finally(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+        // --- Tab Switching Logic ---
+        function openTab(tabName) {
+            var contents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            var buttons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        // --- Image Switching Logic ---
+        function changeImage(element, src) {
+            // Remove active class from all thumbnails
+            var thumbs = document.getElementsByClassName("thumbnail");
+            for (var i = 0; i < thumbs.length; i++) {
+                thumbs[i].classList.remove("active");
+            }
+            // Add active class to clicked thumbnail
+            element.classList.add("active");
+            
+            // Update main image
+            var mainImg = document.getElementById("mainImg");
+            mainImg.style.opacity = 0;
+            setTimeout(function() {
+                mainImg.src = src;
+                mainImg.style.opacity = 1;
+            }, 200);
+        }
+
+        // --- Image Upload Logic (Local Preview) ---
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('mainImg');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // --- Add to Cart Logic ---
+        function addToCart() {
+            alert("Rosemary & Lavender Hair Growth Oil added to cart!");
+            var cartIcon = document.querySelector('.cart-icon');
+            var currentText = cartIcon.innerText;
+            var currentCount = parseInt(currentText.match(/\d+/)[0]);
+            cartIcon.innerText = "🛒 Cart (" + (currentCount + 1) + ")";
+        }
+    </script>
 </body>
 </html>
