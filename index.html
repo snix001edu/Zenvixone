@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenvixone - Product Page</title>
-    <style>
-        /* --- CSS STYLES --- */
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4Y0SC00S1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-V4Y0SC00S1');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenvixone - Product Page</title>
+
+<style>
+     /* --- CSS STYLES --- */
         :root {
             --primary-color: #2c3e50;
             --accent-color: #27ae60;
@@ -513,7 +525,7 @@
                 <div class="form-group" style="margin-bottom: 10px;">
                     <label style="color: #666; font-size: 13px;">Price per Unit</label>
                     <div style="font-weight: 600; color: #333; padding: 8px; background: #f9f9f9; border-radius: 4px; border: 1px solid #eee;">
-                        ₹499.00
+                        ₹199.00
                     </div>
                 </div>
 
@@ -526,7 +538,7 @@
                 <!-- Total Amount -->
                 <div class="total-row">
                     <span class="total-label">Total Amount:</span>
-                    <span id="totalPrice" class="total-price">₹499.00</span>
+                    <span id="totalPrice" class="total-price">₹199.00</span>
                 </div>
             </div>
             
@@ -603,7 +615,7 @@
 
         // 2. Update Total Price Logic
         function updateTotal() {
-            const price = 499;
+            const price = 199;
             const quantity = document.getElementById('quantity').value;
             const total = price * quantity;
             document.getElementById('totalPrice').innerText = '₹' + total.toFixed(2);
@@ -631,7 +643,7 @@
                 if (data.success) {
                     successPopup.style.display = 'flex';
                     form.reset();
-                    document.getElementById('totalPrice').innerText = '₹499.00';
+                    document.getElementById('totalPrice').innerText = '₹199.00';
                 } else {
                     alert('Something went wrong. Please try again.');
                 }
